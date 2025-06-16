@@ -39,14 +39,13 @@ function App() {
     isListening: speechIsListening,
     audioLevel,
     audioSource,
-    setAudioSource,
     error: speechError,
     qualityMetrics,
     sessionDuration
   } = useEnterpriseAudio(sourceLanguage);
 
   const lastTranscriptRef = useRef('');
-  const translationTimeoutRef = useRef<NodeJS.Timeout>();
+  const translationTimeoutRef = useRef<number>();
 
   const handleTranslation = useCallback(async (text: string) => {
     if (!text.trim() || text === lastTranscriptRef.current) return;
